@@ -1,16 +1,6 @@
 '''
-(c) 2011, 2012 Georgia Tech Research Corporation
-This source code is released under the New BSD license.  Please see
-http://wiki.quantsoftware.org/index.php?title=QSTK_License
-for license details.
-
-Created on January, 23, 2013
-
-@author: Sourabh Bajaj
-@contact: sourabhbajaj@gatech.edu
 @summary: Event Profiler Tutorial
 '''
-
 
 import pandas as pd
 import numpy as np
@@ -41,7 +31,7 @@ nan = no information about any event.
 
 def find_events(ls_symbols, d_data):
     ''' Finding the event dataframe '''
-    df_close = d_data['close']
+    df_close = d_data['actual_close']
     ts_market = df_close['SPY']
 
     print "Finding Events"
