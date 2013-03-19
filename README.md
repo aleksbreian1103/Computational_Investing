@@ -1,0 +1,4 @@
+CompInvest
+==========
+
+Computational Investing
