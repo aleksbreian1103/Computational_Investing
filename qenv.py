@@ -4,9 +4,9 @@ from os import environ
 from os.path import join
 from sys import path
 
-HOME = '/Users/Aleks/'
-QS = join(HOME, 'QSTK-0.2.5/QSTK')
-QSDATA = join(HOME, 'QSData')
+HOME = '/Users/Aleks'
+QS = join(HOME, 'QSTK-0.2.5')
+QSDATA = join(HOME, 'QSTK/QSData')
 
 environ.update({
     'QS'             : QS,

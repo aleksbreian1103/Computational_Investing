@@ -31,7 +31,7 @@ def marketsim(cash, orders_file, data_item):
                              timedelta(hours=16))
     
     dataobj = da.DataAccess('Yahoo')
-    close = dataobj.get_data(timestamps, symbols, data_item)
+    close = dataobj.get_data(ldt_timestamps, symbols, data_item)
     
     values = []
     portfolio = Portfolio(cash)
@@ -150,6 +150,7 @@ if __name__ == "__main__":
     BUY_N = 100
     HOLD_DAYS = 5
     CLOSE_TYPE = "actual_close"
+
     
     strategy = EventStrategy(ORDERS_FILE, THRESHOLD, BUY_N, HOLD_DAYS)
     strategy.close()

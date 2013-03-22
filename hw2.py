@@ -11,11 +11,11 @@ import QSTK.qstkutil.tsutil
 import QSTK.qstkstudy.EventProfiler as ep
 
 
-def below_5_dollars_event(eventmat, sym, prices, timestamps):
-    for t in range(1, len(prices)):
-        # The actual close of the stock price drops below $5.00
-        if prices[t-1] >= 5.00 and prices[t] < 5.00:
-            eventmat[sym][t] = 1.0
+#def below_5_dollars_event(eventmat, sym, prices, timestamps):
+#    for t in range(1, len(prices)):
+#        # The actual close of the stock price drops below $5.00
+#        if prices[t-1] >= 5.00 and prices[t] < 5.00:
+#            eventmat[sym][t] = 1.0
 
 
 def find_events(ls_symbols, d_data):

@@ -96,9 +96,9 @@ def analyze(values):
     print Equities([v[3] for v in values], "Portfolio")
 
 
-if __name__ == "__main__":
-    CASH = 1000000
-    ORDERS_FILE = "orders.csv"
-    BENCHMARK = "$SPX"
+
+CASH = 1000000
+ORDERS_FILE = "orders.csv"
+BENCHMARK = "$SPX"
     
-    analyze(marketsim(CASH, ORDERS_FILE, "close"))
+analyze(marketsim(CASH, ORDERS_FILE, "close"))
