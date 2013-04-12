@@ -245,3 +245,4 @@ print "Time in Seconds %32.4f" % ( t2 - t1 )
 print "Time in Minutes %32.4f" % (( t2 - t1 )/ 60 )
 print "Time per Option %32.4f" % float(( t2 - t1 )/ l )+"\n"+ br
 print "End Calculations %32s" %str( d2 )+"\n"+ br
+print "Government is essentially the negation of freedom" 
