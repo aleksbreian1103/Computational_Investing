@@ -6,11 +6,7 @@
 # and Stochastic Interest Rates"
 # Working Paper No. 429, Finrisk --- MS (2009)
 #
-# (c) Visixion GmbH - Dr. Y. Hilpisch
-# Script for illustration purposes only.
-# August 2011
-#
-# SVSI_LSM_Con_Var.py
+
 #
 from numpy import *
 from numpy . random import standard_normal , poisson , seed
