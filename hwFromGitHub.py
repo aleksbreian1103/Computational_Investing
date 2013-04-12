@@ -1,7 +1,7 @@
 import csv
 from datetime import date, datetime, timedelta
 from collections import defaultdict
-import numpy as np
+
 
 import QSTK.qstkutil.DataAccess as da
 import QSTK.qstkutil.qsdateutil as du
