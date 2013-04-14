@@ -22,7 +22,7 @@ if __name__ == '__main__':
     dt_timeofday = dt.timedelta(hours=16)
     dt_start = dt.datetime(2010, 1, 1)
     dt_end = dt.datetime(2010, 12, 31)
-    ls_symbols = ['AAPL','GOOG', 'IBM', 'MSFT']
+    ls_symbols = ['GOOG']
     ldt_timestamps = du.getNYSEdays(dt_start, dt_end, dt_timeofday)
     
      
@@ -31,9 +31,9 @@ if __name__ == '__main__':
    
     ls_keys = ['open', 'high', 'low', 'close', 'volume', 'actual_close']
     ldf_data = dataobj.get_data(ldt_timestamps, ls_symbols, ls_keys)   
-    #d_data = dict(zip(ls_keys, ldf_data))
-    #ldf_data = dataobj.get_data(ldt_timestamps, ls_symbols, ls_keys)
-    all_stocks = ldf_data #get_tickdata(ls_symbols=ls_symbols, ldt_timestamps=ldt_timestamps)
+    d_data = dict(zip(ls_keys, ldf_data))
+    ldf_data = dataobj.get_data(ldt_timestamps, ls_symbols, ls_keys)
+    #all_stocks = ldf_data #get_tickdata(ls_symbols=ls_symbols, ldt_timestamps=ldt_timestamps)
     mi = dict()
     up = dict()
     lo = dict()

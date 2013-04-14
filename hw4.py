@@ -82,6 +82,20 @@ def findEvents(symbols_year, startday, endday, event, data_item, dataobj):
     
     return eventmat
 
+    for sym in ls_symbols:
+      if np.nansum(df_events[sym].values) > 0:
+        pdf = sym + ".pdf"
+        png = sym + ".png"
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        ax.plot(ldt_timestamps, d_data['actual_close'][sym])
+        for i in range(len(df_events[sym].values)):
+          if df_events[sym].values[i] == 1:
+            ax.axvline(x=ldt_timestamps[i], visible=True, c='r')
+        ax.legend(['actual close'], loc=2)
+        fig.autofmt_xdate()
+#        plt.savefig(pdf, format='pdf')
+        plt.savefig(png, format='png')
 
 if __name__ == "__main__":
     START_DAY = dt.datetime(2008,  1,  1)
