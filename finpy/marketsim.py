@@ -6,10 +6,10 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates 
 import datetime as dt
 import sets
-from finpy.utils import get_tickdata
-from finpy.equity import Equity
-from finpy.portfolio import Portfolio
-from finpy.order import Order
+from utils import get_tickdata
+from equity import Equity
+from portfolio import Portfolio
+from order import Order
 
 import QSTK.qstkutil.qsdateutil as du
 if __name__ == '__main__':
@@ -24,9 +24,9 @@ if __name__ == '__main__':
     2008, 12, 4, 1000010
     2008, 12, 5, 1000250
     """
-    cash = sys.argv[1]
-    order_file = sys.argv[2]
-    value_file = sys.argv[3]
+    cash = 1000000
+    order_file = 'orders.csv'
+    value_file = 'values.csv'
     order_list = []
     dt_timeofday = dt.timedelta(hours=16)
     with open(order_file, 'rU') as csvfile:
@@ -70,3 +70,22 @@ if __name__ == '__main__':
     pdf_file = order_file + '.pdf'
     fig.savefig(pdf_file, format='pdf')
     
+    import QSTK.qstkutil.qsdateutil as du
+if __name__ == '__main__':
+    dt_timeofday = dt.timedelta(hours=16)
+    dt_start = dt.datetime(2010, 1, 1)
+    dt_end = dt.datetime(2010, 12, 31)
+    ls_symbols = ['AAPL','GOOG', 'IBM', 'MSFT']
+    ldt_timestamps = du.getNYSEdays(dt_start, dt_end, dt_timeofday)
+    all_stocks = get_tickdata(ls_symbols=ls_symbols, ldt_timestamps=ldt_timestamps)
+    mi = dict()
+    up = dict()
+    lo = dict()
+    ba = dict()
+    for sym in ls_symbols:
+        mi[sym], up[sym], lo[sym], ba[sym] = all_stocks[sym].bollinger_band(tick=sym, k=1)
+    for i in ldt_timestamps:
+        outs = str(i)
+        for s in ls_symbols:
+            outs += "\t" + str(ba[s][i])
+        print outs
