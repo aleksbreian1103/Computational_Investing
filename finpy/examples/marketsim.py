@@ -1,4 +1,6 @@
 import sys
+sys.path.append('/Users/Aleks/QSTK-0.2.5/Examples/HW/finpy')
+
 import csv
 import matplotlib
 matplotlib.use('Agg') # fix for matplotlib under multiprocessing
@@ -6,10 +8,10 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates 
 import datetime as dt
 import sets
-from finpy.utils import get_tickdata
-from finpy.equity import Equity
-from finpy.portfolio import Portfolio
-from finpy.order import Order
+from utils import get_tickdata
+from equity import Equity
+from portfolio import Portfolio
+from order import Order
 
 import QSTK.qstkutil.qsdateutil as du
 if __name__ == '__main__':
@@ -62,7 +64,7 @@ if __name__ == '__main__':
     print "Average Daily Return of $SPX :", pf.equities['$SPX'].avg_dailyrtn()
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    pf.equities['$SPX'].plot(ax=ax, ldt_timestamps=ldt_timestamps, column='nml_price')
+    pf.equities['$SPX'].plot(ax = ax, ldt_timestamps = ldt_timestamps, column = 'nml_close')
     pf.plot(ax=ax, ldt_timestamps=ldt_timestamps)
     legend = ['S&P 500', "Portfolio"]
     ax.legend(legend, loc=2)
