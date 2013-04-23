@@ -46,7 +46,7 @@ plt.xlabel('Date')
 savefig("bollinger1.pdf", format='pdf')
 
 # Normalize the upper and lower bollinger bands in range [-1,+1]
-normalizedupperband = upperband - movavg  + 1
+normalizedupperband = upperband - movavg/movstddev  + 1
 normalizedlowerband = lowerband - movavg  - 1
 
 # Normalize the Bollinger %b indicator in the range [-1,+1]
