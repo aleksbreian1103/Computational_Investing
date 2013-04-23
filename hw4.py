@@ -101,11 +101,11 @@ if __name__ == "__main__":
     START_DAY = dt.datetime(2008,  1,  1)
     END_DAY   = dt.datetime(2009, 12, 31)
     SYMBOLS_STOCK_YEAR = 2012
-    THRESHOLD = 1
+    THRESHOLD = 9
     CASH = 50000
     ORDERS_FILE = "orders_event.csv"
     BUY_N = 100
-    HOLD_DAYS = 2
+    HOLD_DAYS = 5
     CLOSE_TYPE = "actual_close"
     
     dataobj = fetchData()

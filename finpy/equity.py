@@ -31,7 +31,7 @@ class Equity(pd.DataFrame):
         self['shares'][0] = init_share
         self['buy'] = 0.0
         self['sell'] = 0.0
-
+        self['nml_close']
     def buy(self, date, shares, price, ldt_timestamps):
         self.fillna_shares(date, ldt_timestamps)
         self['buy'][date] = shares

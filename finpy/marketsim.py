@@ -1,4 +1,6 @@
 import sys
+sys.path.append('/Users/Aleks/QSTK-0.2.5/Examples/HW/finpy')
+
 import csv
 import matplotlib
 matplotlib.use('Agg') # fix for matplotlib under multiprocessing
@@ -62,7 +64,7 @@ if __name__ == '__main__':
     print "Average Daily Return of $SPX :", pf.equities['$SPX'].avg_dailyrtn()
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    pf.equities['$SPX'].plot(ax=ax, ldt_timestamps=ldt_timestamps, column='nml_price')
+    pf.equities['$SPX'].plot(ax = ax, ldt_timestamps = ldt_timestamps, column = 'nml_close')
     pf.plot(ax=ax, ldt_timestamps=ldt_timestamps)
     legend = ['S&P 500', "Portfolio"]
     ax.legend(legend, loc=2)
