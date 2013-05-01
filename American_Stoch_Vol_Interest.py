@@ -49,9 +49,9 @@ mL =[ 20 ] # Time Steps
 iL =[ 35000 ] # Number of Paths per Valuation
 tL =[ 1.0/12 , 0.25 ,0.5] # Maturity List
 kL =[ 90 , 100 , 110 ] # Strike List
-coVar =True # Use of Control Variates
-moMatch =True # Random Number Correction (std + mean + drift)
-antiPaths =False# Antithetic Paths for Variance Reduction
+coVar =True        # Use of Control Variates
+moMatch =True      # Random Number Correction (std + mean + drift)
+antiPaths =True    # Antithetic Paths for Variance Reduction
 D= 10 # Number of Basis Functions
 PY1 =0.025 # Performance Yardstick 1: Abs. Error in Currency Units
 PY2 =0.015 # Performance Yardstick 2: Rel. Error in Decimals
@@ -248,4 +248,4 @@ print "Time in Seconds %32.4f" % ( t2 - t1 )
 print "Time in Minutes %32.4f" % (( t2 - t1 )/ 60 )
 print "Time per Option %32.4f" % float(( t2 - t1 )/ l )+"\n"+ br
 print "End Calculations %32s" %str( d2 )+"\n"+ br
-print "Government is essentially the negation of freedom" 
+

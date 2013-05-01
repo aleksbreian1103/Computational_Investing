@@ -1,4 +1,6 @@
-
+from collections import defaultdict
+import csv
+import copy
 from numpy import nan as NA
 from pandas import DataFrame
 import pandas as pd
@@ -10,7 +12,8 @@ import datetime as dt
 import QSTK.qstkutil.DataAccess as da
 import QSTK.qstkutil.tsutil as tsu
 import QSTK.qstkstudy.EventProfiler as ep
-
+import Equities as eq
+import Portfolio as pf
 """
 Accepts a list of symbols along with start and end date
 Returns the Event Matrix which is a pandas Datamatrix
@@ -58,7 +61,7 @@ def find_events(ls_symbols, d_data):
             #f_marketprice_today = ts_market.ix[ldt_timestamps[i]]
             #f_marketprice_yest = ts_market.ix[ldt_timestamps[i - 1]]
          
-            if bollingerVal[s_sym].ix[ldt_timestamps[i]] <=-2.0 and bollingerValY[s_sym].ix[ldt_timestamps[i - 1]] >= -2.0 and bollingerValSPY ['SPY'].ix[ldt_timestamps[i]] >= 1:
+            if bollingerVal[s_sym].ix[ldt_timestamps[i]] <=-2.0 and bollingerValY[s_sym].ix[ldt_timestamps[i - 1]] >= -2.0 and bollingerValSPY ['SPY'].ix[ldt_timestamps[i]] >= 1.4:
                     df_events[s_sym].ix[ldt_timestamps[i]] = 1
 
     return df_events
@@ -83,6 +86,56 @@ if __name__ == '__main__':
 
     df_events = find_events(ls_symbols, d_data)
     print "Creating Study"
+    
+
+    
     ep.eventprofiler(df_events, d_data, i_lookback=20, i_lookforward=20,
                 s_filename='MyEventStudy.pdf', b_market_neutral=True, b_errorbars=True,
                 s_market_sym='SPY')
+                
+    def marketsim(cash, orders_file, data_item, dataobj):
+    # Read orders
+        orders = defaultdict(list)
+        symbols = set([])
+        for year, month, day, sym, action, num in csv.reader(open(orders_file, "rU")):
+            orders[dt.date(int(year), int(month), int(day))].append((sym, action, int(num)))
+            symbols.add(sym)
+    
+        days = orders.keys()
+        days.sort()
+        day, end = days[0], days[-1]
+    
+    # Reading the Data for the list of Symbols.
+        timestamps = du.getNYSEdays(dt.datetime(day.year,day.month,day.day),
+                             dt.datetime(end.year,end.month,end.day+1),
+                             dt.timedelta(hours=16))
+    
+#    dataobj = da.DataAccess('Yahoo', cachestalltime = 0)
+        close = dataobj.get_data(timestamps, symbols, data_item)
+    
+        values = []
+        portfolio = pf.Portfolio(cash)
+        for i, t in enumerate(timestamps):
+            for sym, action, num in orders[dt.date(t.year, t.month, t.day)]:
+                if action == 'Sell': num *= -1
+                portfolio.update(sym, num, close[sym][i])
+        
+        entry = (t.year, t.month, t.day, portfolio.value(close, i))
+        values.append(entry)
+        
+        return values     
+
+
+    def analyze(values):
+        print eq.Equities([v[3] for v in values], "Portfolio")
+        
+    CASH = 100000
+    ORDERS_FILE = "orders_event.csv"
+    BUY_N = 100
+    HOLD_DAYS = 5
+    CLOSE_TYPE = "actual_close"
+    
+    analyze(marketsim(CASH, ORDERS_FILE, "close", dataobj))
+
+
+       
