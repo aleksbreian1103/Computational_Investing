@@ -43,25 +43,14 @@ def marketsim(cash, orders_file, data_item):
         print values
     return values
     
-#def computeportfoliostats(portfoliovalue):
-#    totalvalue = np.array(portfoliovalue)
-#    normalized_tvalue = totalvalue / totalvalue[0]
-#    tsu.returnize0(normalized_tvalue)
-#    mean = np.mean(normalized_tvalue)
-#    volatility = np.std(normalized_tvalue)
-#    sharpe = np.sqrt(252) * mean / volatility
-#    return mean, volatility, sharpe;
 
 def analyze(values):
     print eq.Equities([v[3] for v in values], "Portfolio")
 
 
 if __name__ == "__main__":
-    CASH = 1000000
-    ORDERS_FILE = "ordersx.csv"
+    CAPITAL = 1000000
+    ORDERS = "ordersx.csv"
     BENCHMARK = "$SPX"
     
-    analyze(marketsim(CASH, ORDERS_FILE, 'close'))
-    
-   # computeportfoliostats(s)    
-   # print eq.Equities(BENCHMARK[1], "$SPX")
+    analyze(marketsim(CAPITAL, ORDERS, 'close'))

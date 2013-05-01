@@ -9,8 +9,8 @@
 
 #
 from numpy import *
-from numpy . random import standard_normal , poisson , seed
-from numpy . linalg import cholesky , lstsq
+from numpy.random import standard_normal , poisson , seed
+from numpy.linalg import cholesky , lstsq
 from datetime import *
 from time import time
 from SVSI_Euro_Valuation import *
@@ -26,12 +26,14 @@ trueList = array((( 0.0001 ,1.0438 ,9.9950 ,0.0346 ,1.7379 ,9.9823 ,
 1.0752 ,4.2732 , 10.8964 ) , # panel 3
 (0.0787 , 2.1277 , 10.0198 ,0.6012 ,3.4089 , 10.2512 ,
 1.2896 ,4.4103 , 10.6988 ))) # panel 4
+
 # Cox, Ingersoll , Ross (1985) Parameters
 # from MS (2009), table 3, panel 1
 kappa_r =0.3
 theta_r =0.04
 sigma_r =0.1
 r0 = 0.04
+
 # Heston (1993) Parameters
 # from MS (2009), table 3
 para = array ((( 0.01 ,1.5 ,0.15 ,0.1 ), # panel 1
@@ -41,14 +43,15 @@ para = array ((( 0.01 ,1.5 ,0.15 ,0.1 ), # panel 1
 (0.04 ,1.5 ,0.15 ,-0.5 ))) # panel 4
 theta_v = 0.02 # Long Term Volatility Level
 S0 = 100.0 # Initial Index Level
+
 # General Simulation Parameters
 mL =[ 20 ] # Time Steps
 iL =[ 35000 ] # Number of Paths per Valuation
 tL =[ 1.0/12 , 0.25 ,0.5] # Maturity List
 kL =[ 90 , 100 , 110 ] # Strike List
-coVar =True # Use of Control Variates
-moMatch =True # Random Number Correction (std + mean + drift)
-antiPaths =False# Antithetic Paths for Variance Reduction
+coVar =True        # Use of Control Variates
+moMatch =True      # Random Number Correction (std + mean + drift)
+antiPaths =True    # Antithetic Paths for Variance Reduction
 D= 10 # Number of Basis Functions
 PY1 =0.025 # Performance Yardstick 1: Abs. Error in Currency Units
 PY2 =0.015 # Performance Yardstick 2: Rel. Error in Decimals
@@ -245,4 +248,4 @@ print "Time in Seconds %32.4f" % ( t2 - t1 )
 print "Time in Minutes %32.4f" % (( t2 - t1 )/ 60 )
 print "Time per Option %32.4f" % float(( t2 - t1 )/ l )+"\n"+ br
 print "End Calculations %32s" %str( d2 )+"\n"+ br
-print "Government is essentially the negation of freedom" 
+
